@@ -1,0 +1,33 @@
+{
+  "corpus_version": "4e7af5a5da8be68a9e3e6a50b847e26011b598cb78a69171d39499734ce46806:text-embedding-3-small",
+  "settings": {
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "top_k_stores": 3,
+    "top_k_documents": 4,
+    "cache_ttl_seconds": 86400,
+    "generation_mode": "llm",
+    "embedding_backend": "gms",
+    "external_processing_approved": true,
+    "request_timeout_seconds": 15,
+    "selection_min_score": 0.6
+  },
+  "collections": {
+    "store_metadata": {
+      "documents": 1452,
+      "chunks": 1452,
+      "embedded": 0,
+      "removed": 0,
+      "collection_total": 9948
+    },
+    "external_documents": {
+      "documents": 14,
+      "chunks": 14,
+      "embedded": 0,
+      "removed": 0,
+      "collection_total": 14
+    }
+  },
+  "started_at": "2026-10-22T14:21:00+0900",
+  "elapsed_seconds": 2.605
+}

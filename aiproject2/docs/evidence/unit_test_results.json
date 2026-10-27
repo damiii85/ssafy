@@ -1,0 +1,9 @@
+{
+  "tests": 72,
+  "passed": 72,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "elapsed_seconds": 15.97,
+  "external_api_calls": "disabled; model fixtures and local real Chroma/LangGraph tests"
+}

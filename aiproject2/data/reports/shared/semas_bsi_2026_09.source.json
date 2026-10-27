@@ -1,0 +1,16 @@
+{
+  "title": "Small Business and Traditional Market Business Survey (BSI), September 2026",
+  "file": "data/reports/shared/semas_bsi_2026_09.pdf",
+  "source_page": "https://mss.go.kr/site/smba/foffice/ex/statDB/StReportContentDetailView.do?gb=1&reSeq=2223",
+  "download_url": "https://mss.go.kr/site/smba/foffice/ex/statDB/StReport_fileDownload.do?downType=down&gb=1&rfSeq=3914",
+  "publisher": "SEMAS / Ministry of SMEs and Startups",
+  "published_at": null,
+  "data_reference_period": "2026-09 observed sentiment and 2026-10 expectations; verify each table",
+  "scope": "National, regional and industry survey aggregates; not individual spots",
+  "page_count": 34,
+  "text_characters": 27447,
+  "sha256": "0e18e9a48185a5eb2f74fba41d9baf9e3b193a533384ab7d57f64e11ce3242bc",
+  "collected_at": "2026-10-21T07:55:17.692487+00:00",
+  "indexed": false,
+  "usage_status": "Public download verified; document-level reuse terms pending"
+}

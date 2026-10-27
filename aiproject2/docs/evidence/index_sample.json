@@ -1,0 +1,42 @@
+{
+  "ids": [
+    "2713d76c2f86d43d2868b705a02caaaee15b8c838cdf8f57373896f145e35376:11b08b5c19b784751a052a88ae8b70349fab7c3e46f1357e18c7a7365fc7e2f8:0"
+  ],
+  "embeddings": null,
+  "documents": [
+    "선택 지역: 대구 도심 통합상권\n행정구역: 대구 중구\n업종 수준: region\n업종: 지역 전체\n수집본 등록 상가: 10,759곳\n수집 범위: 동성로·대구역·반월당 수집 반경의 합집합. 상가 ID 중복 제거.\n집계 주의: 벡터 검색의 반환 건수를 전체 상가 수로 사용하지 않습니다. 실제 질문의 반경은 원본 CSV로 다시 계산합니다."
+  ],
+  "uris": null,
+  "included": [
+    "documents",
+    "metadatas"
+  ],
+  "data": null,
+  "metadatas": [
+    {
+      "usage_note": "공공 상가정보 수집본 · docs/data_sources.md 참조",
+      "title": "대구 도심 통합상권 · 지역 전체 메타데이터",
+      "collected_at": "2026-10-22T01:31:01.448612+00:00",
+      "content_hash": "b712b2daa0c4310c3f7a46b110eb6c0aaed2d1060d1aafbf133a02b51cd1332e",
+      "corpus_version": "4e7af5a5da8be68a9e3e6a50b847e26011b598cb78a69171d39499734ce46806:text-embedding-3-small",
+      "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+      "reference": "2026-10-21,2026-10-22",
+      "robots_note": "기수집 공공 API CSV · 추가 호출 없음",
+      "content_type": "api_metadata",
+      "document_id": "2713d76c2f86d43d2868b705a02caaaee15b8c838cdf8f57373896f145e35376",
+      "category_name": "",
+      "source_type": "store_metadata",
+      "page": 0,
+      "embedding_model": "text-embedding-3-small",
+      "region_id": "daegu_downtown",
+      "url": "metadata:daegu_downtown:region:",
+      "chunk_overlap": 200,
+      "revision": "11b08b5c19b784751a052a88ae8b70349fab7c3e46f1357e18c7a7365fc7e2f8",
+      "chunk_id": "2713d76c2f86d43d2868b705a02caaaee15b8c838cdf8f57373896f145e35376:11b08b5c19b784751a052a88ae8b70349fab7c3e46f1357e18c7a7365fc7e2f8:0",
+      "chunk_index": 0,
+      "category_level": "region",
+      "region_name": "대구 도심 통합상권",
+      "chunk_size": 1000
+    }
+  ]
+}

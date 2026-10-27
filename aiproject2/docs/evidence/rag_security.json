@@ -1,0 +1,11 @@
+{
+  "key_configured": {
+    "GMS_API_KEY": true,
+    "PUBLIC_DATA_API_KEY": true,
+    "TAVILY_API_KEY": false
+  },
+  "tracked_secret_files": [],
+  "actual_secret_value_in_tracked_source": [],
+  "env_example_filled_variable_names": [],
+  "env_ignored": true
+}

@@ -1,0 +1,12 @@
+{
+  "chunk_size": 1000,
+  "chunk_overlap": 200,
+  "top_k_stores": 3,
+  "top_k_documents": 4,
+  "cache_ttl_seconds": 86400,
+  "generation_mode": "extractive",
+  "embedding_backend": "local",
+  "external_processing_approved": false,
+  "request_timeout_seconds": 15,
+  "selection_min_score": 0.6
+}

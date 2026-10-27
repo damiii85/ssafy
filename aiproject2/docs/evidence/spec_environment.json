@@ -1,0 +1,127 @@
+{
+  "executed_at": "2026-10-22T06:16:40.165717+00:00",
+  "python": "3.11.9",
+  "versions": {
+    "langchain": {
+      "required": "1.3.14",
+      "actual": "1.3.14"
+    },
+    "langgraph": {
+      "required": "1.2.10",
+      "actual": "1.2.10"
+    },
+    "langsmith": {
+      "required": "0.10.17",
+      "actual": "0.10.17"
+    },
+    "langchain-core": {
+      "required": "1.6.0",
+      "actual": "1.6.0"
+    },
+    "langchain-openai": {
+      "required": "1.4.3",
+      "actual": "1.4.3"
+    },
+    "langchain-community": {
+      "required": "0.4.2",
+      "actual": "0.4.2"
+    },
+    "langchain-chroma": {
+      "required": "1.1.0",
+      "actual": "1.1.0"
+    },
+    "langchain-text-splitters": {
+      "required": "1.1.2",
+      "actual": "1.1.2"
+    },
+    "chromadb": {
+      "required": "1.5.9",
+      "actual": "1.5.9"
+    },
+    "openai": {
+      "required": "2.54.0",
+      "actual": "2.54.0"
+    },
+    "streamlit": {
+      "required": "1.62.0",
+      "actual": "1.62.0"
+    },
+    "requests": {
+      "required": "2.34.2",
+      "actual": "2.34.2"
+    },
+    "python-dotenv": {
+      "required": "1.2.3",
+      "actual": "1.2.3"
+    },
+    "typing-extensions": {
+      "required": "4.16.0",
+      "actual": "4.16.0"
+    }
+  },
+  "pip_check": "passed",
+  "tests": {
+    "tests": 72,
+    "passed": 72,
+    "failures": [],
+    "errors": [],
+    "skipped": [],
+    "elapsed_seconds": 15.97,
+    "external_api_calls": "disabled; model fixtures and local real Chroma/LangGraph tests"
+  },
+  "gms_smoke": {
+    "question": "카페를 하고 싶어",
+    "answer": "**수성못에서 카페 창업을 생각하고 계시는군요. 업종과 지역 현황부터 살펴볼게요.**\n\n**어떤 업종인가요?**\n\n커피·차 등 음료를 중심으로 판매하는 매장입니다. 좌석과 체류 중심인지, 포장 판매 중심인지에 따라 비교할 경쟁 점포와 필요한 위치가 달라질 수 있어요.\n\n상가정보 API에서 선택한 업종은 **카페**이며, 다음 분류에 속합니다: 음식 → 비알코올  → 카페.\n\n**이 지역의 해당 업종 현황**\n\n집계 범위: **수성못 기준점의 직선 반경 1,000m**. 확인된 전체 상가 **2,106곳** 중 해당 업종은 **95곳** (4.5%)입니다. [근거 1]\n\n출처: [소상공인시장진흥공단 상가정보 API](https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius) 수집본. 원본 수집일 2026-10-21, 집계 범위는 위 기준입니다. 분류·현황의 출처는 API이며 점포 수는 수집 시점의 등록 정보입니다. 업종의 일반 설명과 확인 제안은 서비스 안내입니다.\n\n**수성못 · 보고서에서 확인한 내용**\n\n유동인구: **121,031명/일** (일평균) [근거 2]\n\n직장인구: **10,812명** [근거 2]\n\n주거인구: **14,840명** [근거 2]\n\n수성못은 호수와 산책·여가시설을 중심으로 한 수성구의 방문 목적지이며, 제공된 분석 경계는 호수 외에 북쪽의 상업·주거지역과 남쪽 녹지를 포함한다. [근거 3]\n\n유동인구 121,031명/일로 조사 7개 상권 중 가장 높다. 주거인구 14,840명, 세대수 7,616세대, 평균 소득 4,252만원, 평균 소비 3,086만원이다. 관광·여가와 생활권 수요가 혼재할 가능성이 있으나 유동인구 전체를 관광객으로 볼 수 없다. [근거 3]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 6쪽, 1·10쪽 기준연월.\n\n보고서 기준연월: 유동인구·매출·주거인구·업소는 2026.07, 직장인구·소득·소비는 2026.06입니다. 이는 원천 데이터 갱신 기준이며 실제 조회 기간은 별도 확인이 필요합니다. PDF 지정 상권 경계의 값으로, API 반경 1km 집계나 현재 실시간 현황과 다릅니다.\n\n**창업 판단 전에 확인할 점**\n\n위 PDF 수치는 상권 전체의 배경 자료이며 해당 업종의 매출·고객 수가 아닙니다. 업종별 매출·실제 임대료·방문 전환율은 알 수 없어 성공 가능성을 단정할 수 없습니다. 유동인구·교통·업종 구성이나 다른 지역의 같은 지표를 질문하시면 지역의 특성을 더 살펴볼 수 있어요.\n\n> 유동인구 121,031명/일로 조사 7개 상권 중 가장 높다. [근거 3]\n\n> 업소 수: 1,671개 [근거 2]",
+    "trace": {
+      "nodes": [
+        "retrieve",
+        "generate"
+      ],
+      "retrieve_seconds": 1.615038,
+      "rag1_count": 2,
+      "rag2_count": 2,
+      "merged_count": 4,
+      "generation_mode": "llm",
+      "generate_seconds": 0.001553,
+      "prompt3_executed": false,
+      "generation_cache_hit": true,
+      "used_citations": 3,
+      "total_seconds": 1.622205
+    },
+    "citations": [
+      {
+        "title": "질문 범위의 실제 API 집계",
+        "source_type": "api_aggregate",
+        "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+        "reference": "2026-10-21",
+        "scope": "수성못 기준점의 직선 반경 1,000m",
+        "page": null,
+        "number": 1
+      },
+      {
+        "title": "수성못 · 보고서 통계",
+        "source_type": "pdf_statistics",
+        "source": "상권보고서.pdf",
+        "page": 2,
+        "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+        "scope": "수성못 PDF 지정 상권 경계",
+        "number": 2
+      },
+      {
+        "title": "수성못 · 지역 설명",
+        "source_type": "pdf_chapter",
+        "source": "상권보고서.pdf",
+        "page": 6,
+        "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+        "scope": "수성못 PDF 지정 상권 경계",
+        "number": 3
+      }
+    ],
+    "source_counts_verified": true
+  },
+  "gms_direct_model": {
+    "question": "수성못의 현재 카페 수를 알고 있나요?",
+    "answer": "죄송하지만, 수성못의 현재 카페 수에 대한 정확한 수치는 제공된 자료에 없기 때문에 알 수 없습니다. 최신 정보를 원하신다면 지역 상권 관련 웹사이트나 관련 기관에 문의하시는 것이 좋습니다.",
+    "actual_request": true
+  }
+}

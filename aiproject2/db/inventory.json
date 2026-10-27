@@ -1,0 +1,10 @@
+{
+  "corpus_signature": "bfc469b6169af29838635a9b91145c4e6ac23a4520f705cb2c859f1154b8f3d2",
+  "collections": {
+    "store_metadata_gms": 1452,
+    "store_metadata_local": 1452,
+    "external_documents_gms": 14,
+    "external_documents_local": 14
+  },
+  "method": "Only active corpus included. Existing GMS vectors copied, local character n-gram vectors built without network. Original inactive 8496 records omitted."
+}

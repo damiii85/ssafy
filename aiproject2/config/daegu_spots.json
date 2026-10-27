@@ -1,0 +1,88 @@
+[
+  {
+    "id": "daegu_downtown",
+    "name": "대구 도심 통합상권",
+    "district": "중구",
+    "latitude": 35.87,
+    "longitude": 128.595,
+    "radius_m": 1000,
+    "anchor": "도심 대표 기준점(동성로 기존 수집 중심)",
+    "components": [
+      {
+        "id": "dongseongro",
+        "name": "동성로",
+        "district": "중구",
+        "latitude": 35.87,
+        "longitude": 128.595,
+        "radius_m": 1000,
+        "anchor": "기존 동성로 수집 중심점"
+      },
+      {
+        "id": "daegu_station",
+        "name": "대구역",
+        "district": "중구",
+        "latitude": 35.87459,
+        "longitude": 128.59762,
+        "radius_m": 1000,
+        "anchor": "대구역앞 (API pilot center; not PDF boundary)",
+        "anchor_source": "data/processed/daegu_bus_stops.csv",
+        "anchor_stop_id": "DGB7001010600",
+        "anchor_reference_date": "2025-10-31"
+      },
+      {
+        "id": "banwoldang",
+        "name": "반월당",
+        "district": "중구",
+        "latitude": 35.86526,
+        "longitude": 128.59562,
+        "radius_m": 1000,
+        "anchor": "2호선반월당역1 (API pilot center; not PDF boundary)",
+        "anchor_source": "data/processed/daegu_bus_stops.csv",
+        "anchor_stop_id": "DGB7001001400",
+        "anchor_reference_date": "2025-10-31"
+      }
+    ],
+    "scope_note": "동성로·대구역·반월당 수집 반경의 합집합. 상가 ID 중복 제거."
+  },
+  {
+    "id": "suseongmot",
+    "name": "수성못",
+    "district": "수성구",
+    "latitude": 35.828,
+    "longitude": 128.617,
+    "radius_m": 1000,
+    "anchor": "수성못 일대 파일럿 중심점"
+  },
+  {
+    "id": "samdeok",
+    "name": "삼덕동",
+    "district": "중구",
+    "latitude": 35.86523,
+    "longitude": 128.60325,
+    "radius_m": 1000,
+    "anchor": "경북대학교병원앞 (API pilot center; not PDF boundary)",
+    "anchor_source": "data/processed/daegu_bus_stops.csv",
+    "anchor_stop_id": "DGB7001009800",
+    "anchor_reference_date": "2025-10-31"
+  },
+  {
+    "id": "dongdaegu",
+    "name": "동대구역",
+    "district": "동구",
+    "latitude": 35.879,
+    "longitude": 128.628,
+    "radius_m": 1000,
+    "anchor": "동대구역 기존 파일럿 수집 중심",
+    "anchor_source": "기존 지역 설정(Git 6e40d88) 복원. 역/상권 경계의 정확한 중심이 아님."
+  },
+  {
+    "id": "chilgok3",
+    "name": "칠곡3지구",
+    "district": "북구",
+    "latitude": 35.943,
+    "longitude": 128.563,
+    "radius_m": 1000,
+    "anchor": "칠곡3지구 기존 파일럿 수집 중심",
+    "anchor_source": "기존 지역 설정(Git 6e40d88) 복원. 역/상권 경계의 정확한 중심이 아님."
+  }
+]

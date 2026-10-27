@@ -1,0 +1,49 @@
+{
+  "file": "data/reports/상권보고서.pdf",
+  "title": "대구광역시 주요 상권 분석 보고서 개정판",
+  "source_type": "user_provided",
+  "active_chat_report": true,
+  "page_count": 10,
+  "sha256": "8cddbe5f53006877be0c608b3346e73cd4285e13f51047d9a9345744d66e1904",
+  "published_at": null,
+  "data_reference_period": {
+    "stores_footfall_sales_residents": "2026-07",
+    "workers_income_spending": "2026-06"
+  },
+  "statistics_page": 2,
+  "definition_pages": [
+    1,
+    10
+  ],
+  "region_pages": {
+    "동성로": [
+      3
+    ],
+    "대구역": [
+      4
+    ],
+    "반월당": [
+      5
+    ],
+    "수성못": [
+      6
+    ],
+    "삼덕동": [
+      7
+    ],
+    "동대구역": [
+      8
+    ],
+    "칠곡3지구": [
+      9
+    ]
+  },
+  "downtown_policy": "PDF 세 구역 통계 합산 금지. API 상가 ID 중복 제거 합집합과 별도.",
+  "new_regions_boundary": "동대구역·칠곡3지구 PDF 상권 경계 미확정",
+  "indexed": false,
+  "replaced_at": "2026-10-23T00:24:32.782554+00:00",
+  "original_filename": "%EC%83%81%EA%B6%8C%EB%B3%B4%EA%B3%A0%EC%84%9C_%EC%B6%9C%EC%B2%98%EC%A0%95%EB%B3%B4%EC%B6%94%EA%B0%80.pdf",
+  "source_information_pages": [
+    10
+  ]
+}

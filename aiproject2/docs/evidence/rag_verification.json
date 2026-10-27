@@ -1,0 +1,560 @@
+{
+  "collections": {
+    "external_documents": 14,
+    "store_metadata": 9948
+  },
+  "index_repeat": {
+    "corpus_version": "4e7af5a5da8be68a9e3e6a50b847e26011b598cb78a69171d39499734ce46806:text-embedding-3-small",
+    "settings": {
+      "chunk_size": 1000,
+      "chunk_overlap": 200,
+      "top_k_stores": 3,
+      "top_k_documents": 4,
+      "cache_ttl_seconds": 86400,
+      "generation_mode": "llm",
+      "embedding_backend": "gms",
+      "external_processing_approved": true,
+      "request_timeout_seconds": 15,
+      "selection_min_score": 0.6
+    },
+    "collections": {
+      "store_metadata": {
+        "documents": 1452,
+        "chunks": 1452,
+        "embedded": 0,
+        "removed": 0,
+        "collection_total": 9948
+      },
+      "external_documents": {
+        "documents": 14,
+        "chunks": 14,
+        "embedded": 0,
+        "removed": 0,
+        "collection_total": 14
+      }
+    },
+    "started_at": "2026-10-22T14:21:00+0900",
+    "elapsed_seconds": 2.605
+  },
+  "mode": "GMS actual service",
+  "cases": [
+    {
+      "region_id": "suseongmot",
+      "question": "카페를 하고 싶어",
+      "elapsed_seconds": 8.661,
+      "answer": "**수성못에서 카페 창업을 생각하고 계시는군요. 업종과 지역 현황부터 살펴볼게요.**\n\n**어떤 업종인가요?**\n\n커피·차 등 음료를 중심으로 판매하는 매장입니다. 좌석과 체류 중심인지, 포장 판매 중심인지에 따라 비교할 경쟁 점포와 필요한 위치가 달라질 수 있어요.\n\n상가정보 API에서 선택한 업종은 **카페**이며, 다음 분류에 속합니다: 음식 → 비알코올  → 카페.\n\n**이 지역의 해당 업종 현황**\n\n집계 범위: **수성못 기준점의 직선 반경 1,000m**. 확인된 전체 상가 **2,106곳** 중 해당 업종은 **95곳** (4.5%)입니다. [근거 1]\n\n출처: [소상공인시장진흥공단 상가정보 API](https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius) 수집본. 원본 수집일 2026-10-21, 집계 범위는 위 기준입니다. 분류·현황의 출처는 API이며 점포 수는 수집 시점의 등록 정보입니다. 업종의 일반 설명과 확인 제안은 서비스 안내입니다.\n\n**수성못 · 보고서에서 확인한 내용**\n\n유동인구: **121,031명/일** (일평균) [근거 2]\n\n직장인구: **10,812명** [근거 2]\n\n주거인구: **14,840명** [근거 2]\n\n수성못은 호수와 산책·여가시설을 중심으로 한 수성구의 방문 목적지이며, 제공된 분석 경계는 호수 외에 북쪽의 상업·주거지역과 남쪽 녹지를 포함한다. [근거 3]\n\n유동인구 121,031명/일로 조사 7개 상권 중 가장 높다. 주거인구 14,840명, 세대수 7,616세대, 평균 소득 4,252만원, 평균 소비 3,086만원이다. 관광·여가와 생활권 수요가 혼재할 가능성이 있으나 유동인구 전체를 관광객으로 볼 수 없다. [근거 3]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 6쪽, 1·10쪽 기준연월.\n\n보고서 기준연월: 유동인구·매출·주거인구·업소는 2026.07, 직장인구·소득·소비는 2026.06입니다. 이는 원천 데이터 갱신 기준이며 실제 조회 기간은 별도 확인이 필요합니다. PDF 지정 상권 경계의 값으로, API 반경 1km 집계나 현재 실시간 현황과 다릅니다.\n\n**창업 판단 전에 확인할 점**\n\n위 PDF 수치는 상권 전체의 배경 자료이며 해당 업종의 매출·고객 수가 아닙니다. 업종별 매출·실제 임대료·방문 전환율은 알 수 없어 성공 가능성을 단정할 수 없습니다. 유동인구·교통·업종 구성이나 다른 지역의 같은 지표를 질문하시면 지역의 특성을 더 살펴볼 수 있어요.\n\n> 유동인구 121,031명/일로 조사 7개 상권 중 가장 높다. [근거 3]\n\n> 업소 수: 1,671개 [근거 2]",
+      "report": {
+        "type": "overview",
+        "spot": "수성못",
+        "categories": [
+          {
+            "level": "small",
+            "name": "카페"
+          }
+        ],
+        "region_id": "suseongmot",
+        "parent_id": "suseongmot",
+        "scope_kind": "region",
+        "scope_center": "수성못 기준점",
+        "scope_description": "수성못 기준점의 직선 반경 1,000m",
+        "source_dates": [
+          "2026-10-21"
+        ],
+        "total_stores": 2106,
+        "competitor_count": 95,
+        "category_counts": [
+          {
+            "업종": "카페",
+            "점포 수": 95
+          }
+        ],
+        "radius_m": 1000,
+        "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+        "collected_at": "2026-10-21T06:22:41.299999+00:00",
+        "distribution": {
+          "카페": 95
+        },
+        "all_distribution": {
+          "음식": 783,
+          "소매": 410,
+          "수리·개인": 316,
+          "과학·기술": 214,
+          "예술·스포츠": 107,
+          "교육": 91,
+          "부동산": 82,
+          "시설관리·임대": 63,
+          "숙박": 28,
+          "보건의료": 12
+        }
+      },
+      "rag": {
+        "trace": {
+          "nodes": [
+            "retrieve",
+            "generate"
+          ],
+          "retrieve_seconds": 7.641136,
+          "rag1_count": 2,
+          "rag2_count": 2,
+          "merged_count": 4,
+          "generation_mode": "llm",
+          "generate_seconds": 0.001302,
+          "prompt3_executed": false,
+          "generation_cache_hit": true,
+          "used_citations": 3,
+          "total_seconds": 7.646161
+        },
+        "citations": [
+          {
+            "title": "질문 범위의 실제 API 집계",
+            "source_type": "api_aggregate",
+            "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+            "reference": "2026-10-21",
+            "scope": "수성못 기준점의 직선 반경 1,000m",
+            "page": null,
+            "number": 1
+          },
+          {
+            "title": "수성못 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "수성못 PDF 지정 상권 경계",
+            "number": 2
+          },
+          {
+            "title": "수성못 · 지역 설명",
+            "source_type": "pdf_chapter",
+            "source": "상권보고서.pdf",
+            "page": 6,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "수성못 PDF 지정 상권 경계",
+            "number": 3
+          }
+        ],
+        "statuses": [],
+        "collection_audit": {
+          "queries": [
+            "수성못 카페 상권 분석",
+            "수성못 카페 창업 동향",
+            "수성못 카페 소비 특성"
+          ],
+          "prompt1_executed": true,
+          "prompt2_executed": true,
+          "cache_hit": true
+        }
+      },
+      "citation_match": true
+    },
+    {
+      "region_id": "daegu_downtown",
+      "question": "중앙대로 412-21 100m 카페",
+      "elapsed_seconds": 0.746,
+      "answer": "**대구 도심 통합상권에서 카페 창업을 생각하고 계시는군요. 업종과 지역 현황부터 살펴볼게요.**\n\n**어떤 업종인가요?**\n\n커피·차 등 음료를 중심으로 판매하는 매장입니다. 좌석과 체류 중심인지, 포장 판매 중심인지에 따라 비교할 경쟁 점포와 필요한 위치가 달라질 수 있어요.\n\n상가정보 API에서 선택한 업종은 **카페**이며, 다음 분류에 속합니다: 음식 → 비알코올  → 카페.\n\n**이 지역의 해당 업종 현황**\n\n집계 범위: **대구광역시 중구 중앙대로 412-21 기준 직선 반경 100m · 위치 출처: 상가정보 API 수집본의 주소별 등록 좌표**. 확인된 전체 상가 **272곳** 중 해당 업종은 **19곳** (7.0%)입니다. [근거 1]\n\n출처: [소상공인시장진흥공단 상가정보 API](https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius) 수집본. 원본 수집일 2026-10-21, 2026-10-22, 집계 범위는 위 기준입니다. 분류·현황의 출처는 API이며 점포 수는 수집 시점의 등록 정보입니다. 업종의 일반 설명과 확인 제안은 서비스 안내입니다.\n\n**동성로 · 보고서에서 확인한 내용**\n\n유동인구: **110,640명/일** (일평균) [근거 2]\n\n직장인구: **20,011명** [근거 2]\n\n주거인구: **721명** [근거 2]\n\n대구 중구 중심 상업가로. 제공된 경계는 중앙로역 남쪽에서 반월당역 북쪽으로 이어지는 중심 상업 구간에 해당한다. [근거 3]\n\n동성로 전체 관광특구와 사용자가 지정한 경계가 같지 않다. 업종별 경쟁도와 공실률을 별도 확인해야 한다. [근거 3]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 3쪽, 1·10쪽 기준연월.\n\n**대구역 · 보고서에서 확인한 내용**\n\n유동인구: **55,851명/일** (일평균) [근거 4]\n\n직장인구: **9,145명** [근거 4]\n\n주거인구: **1,675명** [근거 4]\n\n대구역 남쪽의 교동시장·대구광역시청 주변 도심 구역. 대구역 전체 역세권이나 북측 생활권과 동일하지 않다. [근거 5]\n\n남측 지정 구역만 분석한 수치이므로 북측 역세권과 혼동하지 않는다. [근거 5]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 4쪽, 1·10쪽 기준연월.\n\n**반월당 · 보고서에서 확인한 내용**\n\n유동인구: **18,012명/일** (일평균) [근거 6]\n\n직장인구: **2,570명** [근거 6]\n\n주거인구: **546명** [근거 6]\n\n중구 반월당역 동측의 도심 구역으로, 사용자가 선택한 경계에는 삼덕초등학교 및 경북대학교사범대학부설초등학교 주변이 포함된다. [근거 7]\n\n환승객이 모두 이 구역 내 소비자로 전환되는 것은 아니다. 지상·지하 상업공간도 구분해야 한다. [근거 7]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 5쪽, 1·10쪽 기준연월.\n\n보고서 기준연월: 유동인구·매출·주거인구·업소는 2026.07, 직장인구·소득·소비는 2026.06입니다. 이는 원천 데이터 갱신 기준이며 실제 조회 기간은 별도 확인이 필요합니다. PDF 지정 상권 경계의 값으로, API 반경 1km 집계나 현재 실시간 현황과 다릅니다.\n\n동성로·대구역·반월당은 대구 도심 통합상권에 속하지만, 위 PDF 통계는 합산하지 않습니다.\n\n**창업 판단 전에 확인할 점**\n\n위 PDF 수치는 상권 전체의 배경 자료이며 해당 업종의 매출·고객 수가 아닙니다. 업종별 매출·실제 임대료·방문 전환율은 알 수 없어 성공 가능성을 단정할 수 없습니다. 유동인구·교통·업종 구성이나 다른 지역의 같은 지표를 질문하시면 지역의 특성을 더 살펴볼 수 있어요.\n\n> 유동인구 18,012명/일, 업소 261개, 월평균 매출 지표 3,544만원. [근거 7]",
+      "report": {
+        "type": "overview",
+        "spot": "대구 도심 통합상권",
+        "categories": [
+          {
+            "level": "small",
+            "name": "카페"
+          }
+        ],
+        "region_id": "daegu_downtown",
+        "parent_id": "daegu_downtown",
+        "scope_kind": "radius",
+        "scope_center": "대구광역시 중구 중앙대로 412-21",
+        "scope_description": "대구광역시 중구 중앙대로 412-21 기준 직선 반경 100m · 위치 출처: 상가정보 API 수집본의 주소별 등록 좌표",
+        "source_dates": [
+          "2026-10-21",
+          "2026-10-22"
+        ],
+        "total_stores": 272,
+        "competitor_count": 19,
+        "category_counts": [
+          {
+            "업종": "카페",
+            "점포 수": 19
+          }
+        ],
+        "radius_m": 100.0,
+        "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+        "collected_at": "2026-10-22T01:31:01.448612+00:00",
+        "distribution": {
+          "카페": 19
+        },
+        "all_distribution": {
+          "소매": 98,
+          "음식": 62,
+          "과학·기술": 31,
+          "교육": 21,
+          "수리·개인": 21,
+          "보건의료": 14,
+          "시설관리·임대": 10,
+          "예술·스포츠": 9,
+          "부동산": 6
+        },
+        "scope_latitude": 35.8699802954919,
+        "scope_longitude": 128.595003806398,
+        "scope_coordinate_source": "상가정보 API 수집본의 주소별 등록 좌표"
+      },
+      "rag": {
+        "trace": {
+          "nodes": [
+            "retrieve",
+            "generate"
+          ],
+          "retrieve_seconds": 0.742853,
+          "rag1_count": 2,
+          "rag2_count": 4,
+          "merged_count": 6,
+          "generation_mode": "llm",
+          "generate_seconds": 0.002033,
+          "prompt3_executed": false,
+          "generation_cache_hit": true,
+          "used_citations": 7,
+          "total_seconds": 0.746148
+        },
+        "citations": [
+          {
+            "title": "질문 범위의 실제 API 집계",
+            "source_type": "api_aggregate",
+            "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+            "reference": "2026-10-21, 2026-10-22",
+            "scope": "대구광역시 중구 중앙대로 412-21 기준 직선 반경 100m · 위치 출처: 상가정보 API 수집본의 주소별 등록 좌표",
+            "page": null,
+            "number": 1
+          },
+          {
+            "title": "동성로 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "동성로 PDF 지정 상권 경계",
+            "number": 2
+          },
+          {
+            "title": "동성로 · 지역 설명",
+            "source_type": "pdf_chapter",
+            "source": "상권보고서.pdf",
+            "page": 3,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "동성로 PDF 지정 상권 경계",
+            "number": 3
+          },
+          {
+            "title": "대구역 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "대구역 PDF 지정 상권 경계",
+            "number": 4
+          },
+          {
+            "title": "대구역 · 지역 설명",
+            "source_type": "pdf_chapter",
+            "source": "상권보고서.pdf",
+            "page": 4,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "대구역 PDF 지정 상권 경계",
+            "number": 5
+          },
+          {
+            "title": "반월당 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "반월당 PDF 지정 상권 경계",
+            "number": 6
+          },
+          {
+            "title": "반월당 · 지역 설명",
+            "source_type": "pdf_chapter",
+            "source": "상권보고서.pdf",
+            "page": 5,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "반월당 PDF 지정 상권 경계",
+            "number": 7
+          }
+        ],
+        "statuses": [],
+        "collection_audit": {
+          "queries": [
+            "대구 도심 카페 상권 분석",
+            "중앙대로 412-21 주변 소비 특성",
+            "대구 카페 업종 변화 보고서"
+          ],
+          "prompt1_executed": true,
+          "prompt2_executed": true,
+          "cache_hit": true
+        }
+      },
+      "citation_match": true
+    },
+    {
+      "region_id": "dongdaegu",
+      "question": "유동인구는 몇 명이야?",
+      "elapsed_seconds": 0.696,
+      "answer": "**동대구역 · 보고서에서 확인한 내용**\n\n유동인구: **43,284명/일** (일평균) [근거 1]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 8쪽, 1·10쪽 기준연월.\n\n보고서 기준연월: 유동인구·매출·주거인구·업소는 2026.07, 직장인구·소득·소비는 2026.06입니다. 이는 원천 데이터 갱신 기준이며 실제 조회 기간은 별도 확인이 필요합니다. PDF 지정 상권 경계의 값으로, API 반경 1km 집계나 현재 실시간 현황과 다릅니다.\n\n> 유동인구: 43,284명/일 [근거 1]",
+      "report": null,
+      "rag": {
+        "trace": {
+          "nodes": [
+            "retrieve",
+            "generate"
+          ],
+          "retrieve_seconds": 0.693536,
+          "rag1_count": 4,
+          "rag2_count": 2,
+          "merged_count": 6,
+          "generation_mode": "llm",
+          "generate_seconds": 0.000887,
+          "prompt3_executed": false,
+          "generation_cache_hit": true,
+          "used_citations": 1,
+          "total_seconds": 0.695554
+        },
+        "citations": [
+          {
+            "title": "동대구역 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "동대구역 PDF 지정 상권 경계",
+            "number": 1
+          }
+        ],
+        "statuses": [],
+        "collection_audit": {
+          "queries": [
+            "동대구역 유동인구 분석",
+            "동대구역 상권 유동인구 통계",
+            "동대구역 소비자 행동 분석"
+          ],
+          "prompt1_executed": true,
+          "prompt2_executed": true,
+          "cache_hit": true
+        }
+      },
+      "citation_match": true
+    },
+    {
+      "region_id": "chilgok3",
+      "question": "교통 특징은?",
+      "elapsed_seconds": 0.377,
+      "answer": "**칠곡3지구 · 보고서에서 확인한 내용**\n\n유동인구: **50,357명/일** (일평균) [근거 1]\n\n직장인구: **4,140명** [근거 1]\n\n주거인구: **73명** [근거 1]\n\n대구 북구 칠곡 생활권 내 상업·생활 중심지로 알려진 칠곡3지구를 대상으로 한다. 정확한 분석 경계와 포함 도로는 사용자 지도 자료가 아직 없어 확정하지 않는다. [근거 2]\n\n주거인구 73명과 30세대는 상권 내 수치이지 칠곡 생활권 전체 수치가 아니다. 면적·경계 확인 전에는 상권 밀도를 계산하지 않는다. [근거 2]\n\n지하철·철도: 도시철도 3호선 팔거역과 인근 정류장이 주요 접근 교통수단 후보이다. 해당 역이 실제 지정 경계 안에 포함되는지는 지도로 검증해야 한다. [근거 2]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 9쪽, 1·10쪽 기준연월.\n\n보고서 기준연월: 유동인구·매출·주거인구·업소는 2026.07, 직장인구·소득·소비는 2026.06입니다. 이는 원천 데이터 갱신 기준이며 실제 조회 기간은 별도 확인이 필요합니다. PDF 지정 상권 경계의 값으로, API 반경 1km 집계나 현재 실시간 현황과 다릅니다.\n\n> 교통 접근성 도시철도 3호선 팔거역과 인근 정류장이 주요 접근 교통수단 후보이다. [근거 2]",
+      "report": null,
+      "rag": {
+        "trace": {
+          "nodes": [
+            "retrieve",
+            "generate"
+          ],
+          "retrieve_seconds": 0.375091,
+          "rag1_count": 4,
+          "rag2_count": 2,
+          "merged_count": 6,
+          "generation_mode": "llm",
+          "generate_seconds": 0.001112,
+          "prompt3_executed": false,
+          "generation_cache_hit": true,
+          "used_citations": 2,
+          "total_seconds": 0.377235
+        },
+        "citations": [
+          {
+            "title": "칠곡3지구 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "칠곡3지구 PDF 지정 상권 경계",
+            "number": 1
+          },
+          {
+            "title": "칠곡3지구 · 지역 설명",
+            "source_type": "pdf_chapter",
+            "source": "상권보고서.pdf",
+            "page": 9,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "칠곡3지구 PDF 지정 상권 경계",
+            "number": 2
+          }
+        ],
+        "statuses": [],
+        "collection_audit": {
+          "queries": [
+            "칠곡3지구 교통 특징 분석",
+            "칠곡3지구 상권 교통 현황",
+            "칠곡3지구 교통 데이터 보고서"
+          ],
+          "prompt1_executed": true,
+          "prompt2_executed": true,
+          "cache_hit": true
+        }
+      },
+      "citation_match": true
+    },
+    {
+      "region_id": "samdeok",
+      "question": "오늘 실시간 임대료는?",
+      "elapsed_seconds": 0.003,
+      "answer": "제공된 API 수집본과 PDF에서 질문의 답을 확인할 수 없어 알 수 없습니다.",
+      "report": null,
+      "rag": {
+        "trace": {
+          "nodes": [
+            "retrieve",
+            "generate"
+          ],
+          "retrieve_seconds": 0.001364,
+          "rag1_count": 0,
+          "rag2_count": 0,
+          "merged_count": 0,
+          "generation_mode": "llm",
+          "generate_seconds": 0.000186,
+          "prompt3_executed": false,
+          "generation_cache_hit": false,
+          "used_citations": 0,
+          "total_seconds": 0.00258
+        },
+        "citations": [],
+        "statuses": [
+          "질문의 범위에서 확인 가능한 근거가 없습니다. 지역·업종 또는 필요한 자료를 구체적으로 알려주세요."
+        ],
+        "collection_audit": {
+          "queries": null,
+          "prompt1_executed": null,
+          "prompt2_executed": null,
+          "cache_hit": null
+        }
+      },
+      "citation_match": true
+    },
+    {
+      "region_id": "suseongmot",
+      "question": "수성못 카페 상권을 검색 근거로 설명해줘",
+      "elapsed_seconds": 0.269,
+      "answer": "**수성못에서 카페 창업을 생각하고 계시는군요. 업종과 지역 현황부터 살펴볼게요.**\n\n**어떤 업종인가요?**\n\n커피·차 등 음료를 중심으로 판매하는 매장입니다. 좌석과 체류 중심인지, 포장 판매 중심인지에 따라 비교할 경쟁 점포와 필요한 위치가 달라질 수 있어요.\n\n상가정보 API에서 선택한 업종은 **카페**이며, 다음 분류에 속합니다: 음식 → 비알코올  → 카페.\n\n**이 지역의 해당 업종 현황**\n\n집계 범위: **수성못 기준점의 직선 반경 1,000m**. 확인된 전체 상가 **2,106곳** 중 해당 업종은 **95곳** (4.5%)입니다. [근거 1]\n\n출처: [소상공인시장진흥공단 상가정보 API](https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius) 수집본. 원본 수집일 2026-10-21, 집계 범위는 위 기준입니다. 분류·현황의 출처는 API이며 점포 수는 수집 시점의 등록 정보입니다. 업종의 일반 설명과 확인 제안은 서비스 안내입니다.\n\n**수성못 · 보고서에서 확인한 내용**\n\n유동인구: **121,031명/일** (일평균) [근거 2]\n\n직장인구: **10,812명** [근거 2]\n\n주거인구: **14,840명** [근거 2]\n\n수성못은 호수와 산책·여가시설을 중심으로 한 수성구의 방문 목적지이며, 제공된 분석 경계는 호수 외에 북쪽의 상업·주거지역과 남쪽 녹지를 포함한다. [근거 3]\n\n유동인구 121,031명/일로 조사 7개 상권 중 가장 높다. 주거인구 14,840명, 세대수 7,616세대, 평균 소득 4,252만원, 평균 소비 3,086만원이다. 관광·여가와 생활권 수요가 혼재할 가능성이 있으나 유동인구 전체를 관광객으로 볼 수 없다. [근거 3]\n\n출처: 사용자 제공 「상권보고서.pdf」 2쪽 통계표 및 6쪽, 1·10쪽 기준연월.\n\n보고서 기준연월: 유동인구·매출·주거인구·업소는 2026.07, 직장인구·소득·소비는 2026.06입니다. 이는 원천 데이터 갱신 기준이며 실제 조회 기간은 별도 확인이 필요합니다. PDF 지정 상권 경계의 값으로, API 반경 1km 집계나 현재 실시간 현황과 다릅니다.\n\n**창업 판단 전에 확인할 점**\n\n위 PDF 수치는 상권 전체의 배경 자료이며 해당 업종의 매출·고객 수가 아닙니다. 업종별 매출·실제 임대료·방문 전환율은 알 수 없어 성공 가능성을 단정할 수 없습니다. 유동인구·교통·업종 구성이나 다른 지역의 같은 지표를 질문하시면 지역의 특성을 더 살펴볼 수 있어요.\n\n> 유동인구: 121,031명/일 월평균 매출: 3,537만원 직장인구: 10,812명 주거인구: 14,840명 업소 수: 1,671개 평균 소비: 3,086만원 평균 소득: 4,252만원 세대 수: 7,616세대 [근거 2]\n\n> 수성못은 호수와 산책·여가시설을 중심으로 한 수성구의 방문 목적지이며, 제공된 분석 경계는 호수 외에 북쪽의 상업·주거지역과 남쪽 녹지를 포함한다. [근거 3]",
+      "report": {
+        "type": "overview",
+        "spot": "수성못",
+        "categories": [
+          {
+            "level": "small",
+            "name": "카페"
+          }
+        ],
+        "region_id": "suseongmot",
+        "parent_id": "suseongmot",
+        "scope_kind": "region",
+        "scope_center": "수성못 기준점",
+        "scope_description": "수성못 기준점의 직선 반경 1,000m",
+        "source_dates": [
+          "2026-10-21"
+        ],
+        "total_stores": 2106,
+        "competitor_count": 95,
+        "category_counts": [
+          {
+            "업종": "카페",
+            "점포 수": 95
+          }
+        ],
+        "radius_m": 1000,
+        "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+        "collected_at": "2026-10-21T06:22:41.299999+00:00",
+        "distribution": {
+          "카페": 95
+        },
+        "all_distribution": {
+          "음식": 783,
+          "소매": 410,
+          "수리·개인": 316,
+          "과학·기술": 214,
+          "예술·스포츠": 107,
+          "교육": 91,
+          "부동산": 82,
+          "시설관리·임대": 63,
+          "숙박": 28,
+          "보건의료": 12
+        }
+      },
+      "rag": {
+        "trace": {
+          "nodes": [
+            "retrieve",
+            "generate"
+          ],
+          "retrieve_seconds": 0.267129,
+          "rag1_count": 2,
+          "rag2_count": 2,
+          "merged_count": 4,
+          "generation_mode": "llm",
+          "generate_seconds": 0.001263,
+          "prompt3_executed": false,
+          "generation_cache_hit": true,
+          "used_citations": 3,
+          "total_seconds": 0.269434
+        },
+        "citations": [
+          {
+            "title": "질문 범위의 실제 API 집계",
+            "source_type": "api_aggregate",
+            "source": "https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInRadius",
+            "reference": "2026-10-21",
+            "scope": "수성못 기준점의 직선 반경 1,000m",
+            "page": null,
+            "number": 1
+          },
+          {
+            "title": "수성못 · 보고서 통계",
+            "source_type": "pdf_statistics",
+            "source": "상권보고서.pdf",
+            "page": 2,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "수성못 PDF 지정 상권 경계",
+            "number": 2
+          },
+          {
+            "title": "수성못 · 지역 설명",
+            "source_type": "pdf_chapter",
+            "source": "상권보고서.pdf",
+            "page": 6,
+            "reference": "유동인구·매출·주거인구·업소 2026-07 / 직장인구·소득·소비 2026-06 · 정의 1·10쪽",
+            "scope": "수성못 PDF 지정 상권 경계",
+            "number": 3
+          }
+        ],
+        "statuses": [],
+        "collection_audit": {
+          "queries": [
+            "수성못 카페 상권 분석",
+            "수성못 소비 특성 보고서",
+            "수성못 카페 업종 변화 동향"
+          ],
+          "prompt1_executed": true,
+          "prompt2_executed": true,
+          "cache_hit": true
+        }
+      },
+      "citation_match": true
+    }
+  ],
+  "top_k": {
+    "small": [
+      2,
+      1
+    ],
+    "large": [
+      4,
+      2
+    ],
+    "region_filter": true
+  }
+}
