@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>댓글 증강 시스템</title>
+    
+    <!-- Tailwind CSS (현대적인 UI 구성을 위한 프레임워크) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Noto Sans KR (더 깔끔하고 세련된 폰트 적용) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+        
+        /* 스크롤바 디자인 커스텀 (사진과 유사하게 얇고 깔끔하게) */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f8fafc; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .insight-panel { width:100%; max-width:1400px; margin-top:40px; }
+        .insight-panel[hidden], .sentiment-results[hidden] { display:none; }
+        .insight-grid { display:grid; grid-template-columns:minmax(260px, .85fr) minmax(0,1.35fr); gap:20px; }
+        .insight-card { background:white; border:1px solid #e2e8f0; border-radius:20px; padding:26px; box-shadow:0 4px 20px #0f172a06; }
+        .insight-eyebrow { font-size:12px; font-weight:600; color:#64748b; margin-bottom:10px; }
+        .quote-price { font-size:34px; line-height:1.25; font-weight:700; letter-spacing:-1px; margin:10px 0; }
+        .quote-change { font-size:18px; font-weight:600; }
+        .market-up { color:#dc2626; } .market-down { color:#2563eb; } .market-flat,.market-unknown { color:#64748b; }
+        .insight-note { color:#64748b; font-size:12px; line-height:1.8; margin-top:14px; }
+        .summary-copy { color:#334155; line-height:1.9; font-size:14px; white-space:pre-line; }
+        .sentiment-results { margin-top:20px; }
+        .sentiment-bar { display:flex; height:16px; background:#e2e8f0; border-radius:999px; overflow:hidden; margin:20px 0; }
+        .sentiment-bar span { transition:width .3s ease; }
+        .sentiment-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+        .sentiment-stat { padding:16px; border-radius:12px; background:#f8fafc; }
+        .sentiment-stat strong { display:block; font-size:27px; margin-top:4px; }
+        .sentiment-stat small { font-size:12px; color:#64748b; }
+        .sentiment-detail { margin-top:20px; }
+        .sentiment-detail summary { cursor:pointer; font-weight:600; font-size:14px; }
+        .sentiment-comment { border-top:1px solid #e2e8f0; padding:16px 0; font-size:13px; }
+        .sentiment-comment p { white-space:pre-wrap; line-height:1.8; margin-top:6px; overflow-wrap:anywhere; }
+        .sentiment-badge { display:inline-block; padding:3px 9px; border-radius:6px; background:#f1f5f9; font-size:12px; font-weight:600; }
+        @media(max-width:767px) { .insight-grid { grid-template-columns:1fr; } .insight-card { padding:20px; } .quote-price { font-size:30px; } .sentiment-stats { gap:8px; } .sentiment-stat { padding:12px 8px; } .sentiment-stat strong { font-size:23px; } }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center pt-20 px-4 text-slate-800">
+
+    <!-- 제목 영역 (아이콘과 세련된 텍스트 조합) -->
+    <div class="flex items-center gap-3 mb-10">
+        <!-- SVG 말풍선 아이콘 -->
+        <div class="bg-blue-100 p-3 rounded-xl text-blue-600 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+            </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-blue-600 tracking-tight">댓글 증강 시스템</h1>
+    </div>
+
+    <!-- 메인 검색 컨테이너 -->
+    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 w-full max-w-3xl flex flex-col items-center transition-all">
+        
+        <form method="GET" action="" class="w-full flex flex-col items-center">
+            
+            <!-- 입력창과 버튼 그룹 -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 w-full mb-8">
+                
+                <label for="company_name" class="text-base font-semibold text-slate-700 whitespace-nowrap">
+                    회사 이름 입력
+                </label>
+                
+                <div class="relative w-full md:w-80">
+                    <input 
+                        type="text" 
+                        id="company_name" 
+                        name="company_name" 
+                        placeholder="예: 삼성전자"
+                        autocomplete="off"
+                        class="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm placeholder:text-slate-400"
+                    >
+                </div>
+
+                <button 
+                    type="submit"
+                    id="search_btn"
+                    class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl text-sm font-semibold shadow-sm hover:shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 disabled:bg-slate-400 disabled:cursor-not-allowed"
+                >
+                    <!-- 돋보기 아이콘 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <span id="btn_text">검색</span>
+                </button>
+            </div>
+            
+            <!-- 진행 상황을 보여주는 상태 박스 (초기에는 숨김 처리) -->
+            <div id="status_box" class="hidden w-full mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-4 transition-all">
+                <div id="loading_spinner" class="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <div id="success_icon" class="hidden text-green-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" /></svg>
+                </div>
+                <span id="status_text" class="text-sm font-semibold text-slate-700">준비 중...</span>
+            </div>
+
+            <!-- 하단 안내 문구 (정보성 박스 형태) -->
+            <div class="flex items-center justify-center gap-2 text-sm text-slate-500 bg-slate-50 px-5 py-3 rounded-lg w-full md:w-auto border border-slate-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-500 shrink-0">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                </svg>
+                <p class="leading-relaxed text-center md:text-left">
+                    회사명 일부만 입력해도 됩니다. (가장 상단의 검색 결과를 자동 선택)
+                </p>
+            </div>
+
+        </form>
+    </div>
+
+    <section id="insight_panel" class="insight-panel" hidden aria-label="주가와 커뮤니티 분석">
+        <div class="insight-grid">
+            <article class="insight-card">
+                <p class="insight-eyebrow">수집 시점 주가 · 전일 종가 대비</p>
+                <h2 id="quote_company" class="text-xl font-bold"></h2>
+                <p id="quote_price" class="quote-price market-unknown">확인 중</p>
+                <p id="quote_change" class="quote-change market-unknown">등락 정보 확인 중</p>
+                <p id="quote_time" class="insight-note"></p>
+                <p class="insight-note">상승은 빨강, 하락은 파랑, 보합·미확인은 회색으로 표시합니다.<br>수집한 시세이며 자동 갱신되지 않습니다.</p>
+            </article>
+            <article class="insight-card" aria-live="polite">
+                <p class="insight-eyebrow">실제 수집 댓글 기반</p>
+                <h2 class="text-xl font-bold mb-3">커뮤니티 한눈에 보기</h2>
+                <p id="community_summary" class="summary-copy">댓글 요약과 감성을 분석하고 있습니다.</p>
+                <p id="analysis_note" class="insight-note">증강 댓글을 제외한 원본 댓글을 분석합니다.</p>
+            </article>
+        </div>
+        <article id="sentiment_results" class="insight-card sentiment-results" hidden>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="text-xl font-bold">커뮤니티 감성분석</h2>
+                <span id="sentiment_total" class="text-sm text-slate-500"></span>
+            </div>
+            <div id="sentiment_bar" class="sentiment-bar" role="img" aria-label="감성 비율">
+                <span id="bar_positive" style="background:#dc2626;width:0%"></span>
+                <span id="bar_negative" style="background:#2563eb;width:0%"></span>
+                <span id="bar_neutral" style="background:#94a3b8;width:0%"></span>
+            </div>
+            <div class="sentiment-stats">
+                <div class="sentiment-stat market-up">긍정<strong id="ratio_positive">—</strong><small id="total_positive"></small></div>
+                <div class="sentiment-stat market-down">부정<strong id="ratio_negative">—</strong><small id="total_negative"></small></div>
+                <div class="sentiment-stat market-flat">중립<strong id="ratio_neutral">—</strong><small id="total_neutral"></small></div>
+            </div>
+            <p class="insight-note">이번에 수집한 댓글의 종목에 대한 태도를 분류한 결과입니다. 전체 투자자 여론이나 향후 주가를 뜻하지 않습니다. 의미가 불명확하거나 감성이 혼재된 댓글은 중립으로 분류합니다.</p>
+            <details class="sentiment-detail">
+                <summary>댓글별 감성 및 판단 이유 보기</summary>
+                <ol id="sentiment_comments"></ol>
+            </details>
+        </article>
+    </section>
+
+    <!-- 결과 출력 컨테이너 (초기에는 숨김) -->
+    <div id="results_container" class="hidden w-full max-w-[95%] xl:max-w-[1400px] mt-12 flex-col items-center pb-20">
+        <h2 id="results_title" class="text-2xl font-bold text-slate-800 mb-8">댓글 분석 결과</h2>
+        
+        <div class="flex flex-col xl:flex-row w-full gap-3 items-center xl:items-stretch justify-center">
+            
+            <!-- 1. 원본 데이터 -->
+            <div class="flex-1 w-full bg-white rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-slate-200 overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-slate-100 text-center flex flex-col justify-center min-h-[64px]">
+                    <h3 class="font-bold text-blue-600">원본 데이터 (<span id="count_original">0</span>개)</h3>
+                </div>
+                <ul id="list_original" class="p-5 overflow-y-auto h-[450px] text-[13px] leading-relaxed text-slate-700 space-y-3 custom-scrollbar"></ul>
+            </div>
+            
+            <!-- 화살표 -->
+            <div class="hidden xl:flex items-center text-blue-500 font-bold text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+            </div>
+
+            <!-- 2. 전처리 후 -->
+            <div class="flex-1 w-full bg-white rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-slate-200 overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-slate-100 text-center flex flex-col justify-center min-h-[64px]">
+                    <h3 class="font-bold text-blue-600">전처리 후 (<span id="count_cleaned">0</span>개)<br><span class="text-xs text-blue-600/80 mt-1">- (길이: 5 ~ 76)</span></h3>
+                </div>
+                <ul id="list_cleaned" class="p-5 overflow-y-auto h-[450px] text-[13px] leading-relaxed text-slate-700 space-y-3 custom-scrollbar"></ul>
+            </div>
+
+            <!-- 화살표 -->
+            <div class="hidden xl:flex items-center text-blue-500 font-bold text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+            </div>
+
+            <!-- 3. 증강 데이터 -->
+            <div class="flex-1 w-full bg-white rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-slate-200 overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-slate-100 text-center flex flex-col justify-center min-h-[64px]">
+                    <h3 class="font-bold text-blue-600">증강 데이터 (<span id="count_augmented">0</span>개)</h3>
+                </div>
+                <ul id="list_augmented" class="p-5 overflow-y-auto h-[450px] text-[13px] leading-relaxed text-slate-700 space-y-3 custom-scrollbar"></ul>
+            </div>
+
+            <!-- 화살표 -->
+            <div class="hidden xl:flex items-center text-blue-500 font-bold text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+            </div>
+
+            <!-- 4. 최종 결과 -->
+            <div class="flex-1 w-full bg-white rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-slate-200 overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-slate-100 text-center flex flex-col justify-center min-h-[64px]">
+                    <h3 class="font-bold text-blue-600">최종 결과 (<span id="count_integrated">0</span>개)</h3>
+                </div>
+                <ul id="list_integrated" class="p-5 overflow-y-auto h-[450px] text-[13px] leading-relaxed text-slate-700 space-y-3 custom-scrollbar"></ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 비동기 스트리밍을 처리하는 Javascript -->
+    <script>
+        const form = document.querySelector('form');
+        const input = document.getElementById('company_name');
+        const btn = document.getElementById('search_btn');
+        const btnText = document.getElementById('btn_text');
+        
+        const statusBox = document.getElementById('status_box');
+        const statusText = document.getElementById('status_text');
+        const loadingSpinner = document.getElementById('loading_spinner');
+        const successIcon = document.getElementById('success_icon');
+
+
+        const labelNames = {positive:'긍정', negative:'부정', neutral:'중립'};
+        const labelColors = {positive:'market-up', negative:'market-down', neutral:'market-flat'};
+        function renderSnapshot(company, snapshot = {}) {
+            document.getElementById('insight_panel').hidden = false;
+            document.getElementById('quote_company').textContent = company;
+            const direction = ['up','down','flat'].includes(snapshot.direction) ? snapshot.direction : 'unknown';
+            const price = document.getElementById('quote_price');
+            const change = document.getElementById('quote_change');
+            price.className = `quote-price market-${direction}`;
+            change.className = `quote-change market-${direction}`;
+            price.textContent = typeof snapshot.price === 'number'
+                ? `${new Intl.NumberFormat('ko-KR', {maximumFractionDigits:2}).format(snapshot.price)}원` : '시세 확인 불가';
+            const rate = snapshot.change_percent;
+            change.textContent = typeof rate !== 'number' ? '전일 대비 등락 정보 미확인'
+                : rate > 0 ? `▲ 상승 +${rate.toFixed(2)}%`
+                : rate < 0 ? `▼ 하락 ${rate.toFixed(2)}%` : '— 보합 0.00%';
+            const time = snapshot.observed_at ? new Date(snapshot.observed_at) : null;
+            document.getElementById('quote_time').textContent = time && !Number.isNaN(time.getTime())
+                ? `토스증권 · ${time.toLocaleString('ko-KR', {timeZone:'Asia/Seoul'})} 기준 (한국시간)` : '수집 시점 정보를 확인할 수 없습니다.';
+        }
+        function renderAnalysis(analysis = {}) {
+            const ready = analysis.status === 'complete';
+            document.getElementById('community_summary').textContent = ready ? analysis.summary
+                : analysis.message || '댓글 요약·감성분석을 완료하지 못했습니다.';
+            document.getElementById('sentiment_results').hidden = !ready;
+            document.getElementById('analysis_note').textContent = ready
+                ? `원본 댓글 ${analysis.total}개 분석 · AI 요약은 댓글의 의견을 정리한 내용입니다.`
+                : '기존 수집·정제·증강 결과는 아래에서 확인할 수 있습니다.';
+            if (!ready) return;
+            document.getElementById('sentiment_total').textContent = `원본 댓글 ${analysis.total}개 기준`;
+            for (const label of ['positive','negative','neutral']) {
+                const ratio = analysis.ratios[label];
+                document.getElementById(`ratio_${label}`).textContent = `${ratio.toFixed(1)}%`;
+                document.getElementById(`total_${label}`).textContent = `${analysis.counts[label]}개`;
+                document.getElementById(`bar_${label}`).style.width = `${ratio}%`;
+            }
+            document.getElementById('sentiment_bar').setAttribute('aria-label',
+                ['positive','negative','neutral'].map(label => `${labelNames[label]} ${analysis.ratios[label]}%`).join(', '));
+            const list = document.getElementById('sentiment_comments');
+            list.replaceChildren();
+            for (const record of analysis.comments) {
+                const item = document.createElement('li');
+                item.className = 'sentiment-comment';
+                const badge = document.createElement('span');
+                badge.className = `sentiment-badge ${labelColors[record.label]}`;
+                badge.textContent = `${record.index + 1}. ${labelNames[record.label]}`;
+                const text = document.createElement('p'); text.textContent = record.text;
+                const reason = document.createElement('p'); reason.className = 'text-slate-500'; reason.textContent = record.reason;
+                item.append(badge, text, reason); list.appendChild(item);
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // 기본 폼 제출(페이지 새로고침) 방지
+            
+            const companyName = input.value.trim();
+            if (!companyName) return;
+
+            // UI 초기화 (로딩 상태)
+            document.getElementById('insight_panel').hidden = true;
+            document.getElementById('sentiment_results').hidden = true;
+            document.getElementById('community_summary').textContent = '댓글 요약과 감성을 분석하고 있습니다.';
+            document.getElementById('analysis_note').textContent = '증강 댓글을 제외한 원본 댓글을 분석합니다.';
+            statusText.classList.remove('text-red-500');
+            btn.disabled = true;
+            btnText.innerText = '처리 중...';
+            statusBox.classList.remove('hidden');
+            loadingSpinner.classList.remove('hidden');
+            successIcon.classList.add('hidden');
+            statusText.innerText = '서버에 연결 중...';
+            statusText.classList.replace('text-green-600', 'text-slate-700');
+
+            // 새 검색 시작 시 기존 결과 화면 숨기기
+            document.getElementById('results_container').classList.add('hidden');
+            document.getElementById('results_container').classList.remove('flex');
+
+            // Server-Sent Events (SSE) 연결
+            const eventSource = new EventSource(`/comments/company/stream/?company_name=${encodeURIComponent(companyName)}`);
+
+            eventSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                
+                // 스트리밍으로 넘어온 메시지 화면에 출력
+                statusText.innerText = data.message;
+
+                if (data.status === 'snapshot') {
+                    renderSnapshot(data.company, data.stock_snapshot);
+                    return;
+                }
+                if (data.status === 'complete') {
+                    renderSnapshot(data.company, data.stock_snapshot);
+                    renderAnalysis(data.sentiment_analysis);
+                    // 완료 시 연결 종료 및 UI 업데이트
+                    eventSource.close();
+                    btn.disabled = false;
+                    btnText.innerText = '검색';
+                    loadingSpinner.classList.add('hidden');
+                    successIcon.classList.remove('hidden');
+                    statusText.classList.replace('text-slate-700', 'text-green-600');
+                    input.value = data.company; // 입력창 값을 매칭된 공식 회사명으로 변경
+                    
+                    // --- 결과 화면 렌더링 로직 ---
+                    const resultsContainer = document.getElementById('results_container');
+                    resultsContainer.classList.remove('hidden');
+                    resultsContainer.classList.add('flex');
+                    document.getElementById('results_title').innerText = `${data.company} 댓글 분석 결과`;
+                    
+                    // 각 리스트 영역에 데이터를 채워주는 함수
+                    const renderList = (elementId, countId, items, isObject = false) => {
+                        const listEl = document.getElementById(elementId);
+                        document.getElementById(countId).innerText = items.length;
+                        listEl.innerHTML = '';
+                        
+                        items.forEach((item, idx) => {
+                            // 통합 데이터는 딕셔너리({text: '...', source: '...'}) 형태이므로 .text를 추출
+                            const text = isObject ? item.text : item; 
+                            const li = document.createElement('li');
+                            li.className = 'pb-3 border-b border-slate-100 last:border-0 last:pb-0';
+                            li.innerText = `${idx + 1}. ${text}`;
+                            listEl.appendChild(li);
+                        });
+                    };
+                    
+                    // 4개의 박스에 각각 데이터 주입
+                    renderList('list_original', 'count_original', data.data.original);
+                    renderList('list_cleaned', 'count_cleaned', data.data.cleaned);
+                    renderList('list_augmented', 'count_augmented', data.data.augmented);
+                    renderList('list_integrated', 'count_integrated', data.data.integrated, true);
+                    
+                } else if (data.status === 'error') {
+                    eventSource.close();
+                    btn.disabled = false;
+                    btnText.innerText = '검색';
+                    loadingSpinner.classList.add('hidden');
+                    statusText.classList.add('text-red-500');
+                }
+            };
+
+            eventSource.onerror = function() {
+                eventSource.close();
+                btn.disabled = false;
+                btnText.innerText = '검색';
+                loadingSpinner.classList.add('hidden');
+                statusText.innerText = '네트워크 오류가 발생했습니다.';
+                statusText.classList.add('text-red-500');
+            };
+        });
+    </script>
+</body>
+</html>
